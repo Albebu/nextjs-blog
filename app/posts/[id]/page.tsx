@@ -1,5 +1,7 @@
 "use client";
 
+import PostCard from "../PostCard";
+
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 
@@ -20,8 +22,8 @@ export default function Post() {
         }
         const data = await response.json();
         setPost(data);
-      } catch (err) {
-        setError(err.message);
+      } catch (e) {
+        setError(e.message);
       } finally {
         setLoading(false);
       }
@@ -34,10 +36,8 @@ export default function Post() {
   if (!post) return <div>No se encontró el post</div>;
 
   return (
-    <div>
-      <h1>{post.title}</h1>
-      <p>{post.description}</p>
-      {/* Puedes agregar más campos según la estructura del post */}
+    <div className="flex justify-center align-center">
+      <PostCard post={post}/>
     </div>
   );
 }

@@ -13,8 +13,22 @@ export async function GET(
 
   try {
     const post = await prisma.post.findUnique({
-      where: { id: postId },
-    });
+      where: {
+        id: postId,
+      },
+      select: {
+      id: true,
+      title: true,
+      description: true,
+      creationDate: true,
+      user: {
+        select: {
+          name: true,
+          firstSurname: true,
+        },
+      },
+    },
+    })
 
     if (!post) {
       return NextResponse.json(

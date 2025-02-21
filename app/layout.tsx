@@ -1,6 +1,10 @@
+// app/layout.tsx
+
 import { getServerSession } from "next-auth"
 import Link from "next/link";
 import Logout from "./logout";
+import '@/app/styles/globals.css'
+import { SessionProvider } from "next-auth/react";
 
 export const metadata = {
   title: 'Next.js',
@@ -12,22 +16,26 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  // Obtén la sesión en el servidor
   const session = await getServerSession();
+
   return (
     <html lang="en">
-      
       <body>
-        <nav>
-        {!! session && 
-          <Logout />
-        } 
-        {!session && 
-          <Link href="/login">
-            Log in
-          </Link>
-        }
-      </nav>
-        {children}</body>
+        <nav className="flex w-auto">
+          {!!session && <Logout />} 
+          {!session && (
+            <div className="flex justify-items-end gap-4">
+              <Link href="/login" className="">Log in</Link>
+              <Link href="/register">Register</Link>
+            </div>
+          )}
+        </nav>
+        
+        {/* Mueve SessionProvider aquí solo alrededor de los componentes del cliente */}
+        {children}
+
+      </body>
     </html>
   )
 }
