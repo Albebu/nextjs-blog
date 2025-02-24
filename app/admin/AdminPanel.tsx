@@ -9,9 +9,9 @@ export default function AdminPanel() {
     const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (status === "loading") return;  // Si la sesión está cargando, no hacemos nada
+    if (status === "loading") return;  
     if (!session || session?.user?.email !== "alexbelbui@campus.monlau.com") {
-      signIn();  // Redirige al login si no es el usuario adecuado
+      signIn();
     }
   }, [session, status]);
 

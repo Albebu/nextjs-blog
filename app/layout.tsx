@@ -16,7 +16,6 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  // Obtén la sesión en el servidor
   const session = await getServerSession();
 
   return (
@@ -31,10 +30,7 @@ export default async function RootLayout({
             </div>
           )}
         </nav>
-        
-        {/* Mueve SessionProvider aquí solo alrededor de los componentes del cliente */}
         {children}
-
       </body>
     </html>
   )

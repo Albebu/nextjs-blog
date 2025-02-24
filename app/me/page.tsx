@@ -2,14 +2,14 @@
 
 
 import { SessionProvider } from "next-auth/react";
-import AdminPanel from "./AdminPanel";
+import Panel from "./panel";
 
-export default function AdminDashboard() {
+export default function Me() {
   
 
   return (
     <SessionProvider>
-        <AdminPanel></AdminPanel>
+        <Panel></Panel>
     </SessionProvider>
   );
 }

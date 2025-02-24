@@ -31,8 +31,7 @@ const handler = NextAuth({
 
         if (!user) return null;
 
-        // Ponemos el || "" por que como puede ser que no exista hay que compararlo con algo y no con un null, seguridad de typescript
-        const passwordCorrect = await compare(credentials?.password || "", user?.password || "")
+        const passwordCorrect = await compare(credentials?.password || "docker", user?.password || "")
 
         console.log(passwordCorrect);
 
